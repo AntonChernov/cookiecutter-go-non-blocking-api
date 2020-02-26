@@ -9,7 +9,7 @@ This project requires Go to be installed.
 Running it then should be as simple as:
 
 ```console
-$ go mod vendor && go get -u && go test ./... && go run main.go
+$ go mod vendor && go get && go test ./... && go run main.go
 ```
 
 ### Testing
