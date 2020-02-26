@@ -1,0 +1,11 @@
+{
+    "full_name": "Anton Chernov",
+    "github_username": "AntonChernov",
+    "app_name": "mygolangapiservice",
+    "project_short_description": "Golang API service.",
+    "go_mod_or_dep": "mod",
+    "use_git": "y",
+    "use_postgres": "y/n",
+    "use_mongo": "y/n"
+
+}
