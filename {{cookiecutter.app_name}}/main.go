@@ -80,7 +80,14 @@ func main() {
 	// Doesn't block if no connections, but will otherwise wait
 	// until the timeout deadline.
 	srv.Shutdown(ctx)
-	defer utl.DB.Close()
+	{% if cookiecutter.use_mongo == "y" and cookiecutter.use_postgres !="n" -%}
+	//defer <mongo connection here>
+	defer utl.SQLDB.Close()
+	{% elif cookiecutter.use_mongo != "y" and cookiecutter.use_postgres !="n" -%}
+	defer utl.SQLDB.Close()
+	{% else -%}
+	// DB correction not set
+	{%- endif %}
 	// Optionally, you could run srv.Shutdown in a goroutine and block on
 	// <-ctx.Done() if your application should wait for other services
 	// to finalize based on context cancellation.
