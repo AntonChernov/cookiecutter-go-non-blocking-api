@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	DB *gorm.DB // Global variable handle connection to db
+	SQLDB *gorm.DB // Global variable handle connection to db
 )
 
 //GORMDBConnection Connection to Postgress DB use GORM lib
@@ -32,7 +32,7 @@ func GORMDBConnection() (*gorm.DB, error) {
 }
 
 func init() {
-	DB, _ = GORMDBConnection()
+	SQLDB, _ = GORMDBConnection()
 }
 
 {%elif cookiecutter.use_postgres !="n" and cookiecutter.use_GORM == "n" -%}
@@ -45,7 +45,7 @@ import (
 
 
 var (
-	DB *sql.DB // Global variable handle connection to db
+	SQLDB *sql.DB // Global variable handle connection to db
 )
 
 
@@ -70,6 +70,6 @@ func PostgressDBConnection() (*sql.DB, error) {
 
 
 func init() {
-	DB, _ = PostgressDBConnection()
+	SQLDB, _ = PostgressDBConnection()
 }
 {%endif -%}
