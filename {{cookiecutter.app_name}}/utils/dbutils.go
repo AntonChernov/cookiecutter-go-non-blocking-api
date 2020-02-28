@@ -1,6 +1,6 @@
 package utils
 
-{%if cookiecutter.use_postgres !="n" and cookiecutter.use_GORM != "n" -%}
+{%if cookiecutter.postgres_uri !="n" and cookiecutter.use_GORM != "n" -%}
 
 import (
 	"log"
@@ -15,7 +15,7 @@ var (
 
 //GORMDBConnection Connection to Postgress DB use GORM lib
 func GORMDBConnection() (*gorm.DB, error) {
-	connStr := "{{cookiecutter.use_postgres}}"
+	connStr := "{{cookiecutter.postgres_uri}}"
 	db, err := gorm.Open("postgres", connStr)
 	if err != nil {
 		log.Println("Database connection not created!")
@@ -35,7 +35,7 @@ func init() {
 	SQLDB, _ = GORMDBConnection()
 }
 
-{%elif cookiecutter.use_postgres !="n" and cookiecutter.use_GORM == "n" -%}
+{%elif cookiecutter.postgres_uri !="n" and cookiecutter.use_GORM == "n" -%}
 import (
 	"database/sql"
 	"log"
@@ -52,7 +52,7 @@ var (
 
 //PostgressDBConnection Connection to Postgress DB
 func PostgressDBConnection() (*sql.DB, error) {
-	connStr := "{{cookiecutter.use_postgres}}"
+	connStr := "{{cookiecutter.postgres_uri}}"
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		log.Println("Database connection not created!")

@@ -80,10 +80,10 @@ func main() {
 	// Doesn't block if no connections, but will otherwise wait
 	// until the timeout deadline.
 	srv.Shutdown(ctx)
-	{% if cookiecutter.use_mongo == "y" and cookiecutter.use_postgres !="n" -%}
+	{% if cookiecutter.mongo_uri != "n" and cookiecutter.postgres_uri !="n" -%}
 	//defer <mongo connection here>
 	defer utl.SQLDB.Close()
-	{% elif cookiecutter.use_mongo != "y" and cookiecutter.use_postgres !="n" -%}
+	{% elif cookiecutter.mongo_uri == "n" and cookiecutter.postgres_uri !="n" -%}
 	defer utl.SQLDB.Close()
 	{% else -%}
 	// DB correction not set

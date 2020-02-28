@@ -4,9 +4,10 @@
     "app_name": "mygolangapiservice",
     "project_short_description": "Golang API service.",
     "use_validate_lib": "y/n",
-    "use_postgres": "y/n",
+    "postgres_uri": "y/n",
     "use_GORM": "y/n",
     "use_authboss": "y/n",
     "use_redis": "y/n",
-    "use_mongo": "y/n"
+    "mongo_uri": "y/n",
+    "run_init": "y/n"
 }
