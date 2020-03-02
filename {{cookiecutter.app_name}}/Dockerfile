@@ -21,7 +21,7 @@ RUN go get -u
 COPY . .
 
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux go build -o {{cookiecutter.app_name}} -mod vendor
+RUN go build -o {{cookiecutter.app_name}} -mod vendor
 
 # Start a new stage from scratch
 FROM alpine:latest
@@ -37,4 +37,4 @@ COPY --from=builder /app/{{cookiecutter.app_name}} .
 EXPOSE 8800
 
 #Command to run the executable
-CMD ["./{{cookiecutter.app_name}} -hostport=0.0.0.0:8800"]
+# CMD ["./{{cookiecutter.app_name}} --hostport=0.0.0.0:8800"]
