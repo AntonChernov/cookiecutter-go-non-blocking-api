@@ -21,7 +21,7 @@ RUN go get -u
 COPY . .
 
 # Build the Go app
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+RUN go build -o {{cookiecutter.app_name}} -mod vendor
 
 # Start a new stage from scratch
 FROM alpine:latest
@@ -30,12 +30,11 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 
 # Copy the Pre-built binary file from the previous stage. Observe we also copied the .env file
-COPY --from=builder /app/main .
-COPY --from=builder /app/.env .       
+COPY --from=builder /app/{{cookiecutter.app_name}} .
+# COPY --from=builder /app/.env .       
 
 # Expose port 8080 to the outside world
-EXPOSE 8080
+EXPOSE 8800
 
 #Command to run the executable
-CMD ["./main"]
-view rawDockerfile hosted with ❤ by GitHub
+# CMD ["./{{cookiecutter.app_name}} --hostport=0.0.0.0:8800"]
