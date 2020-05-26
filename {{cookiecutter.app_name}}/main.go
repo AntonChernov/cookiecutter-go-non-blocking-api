@@ -13,7 +13,10 @@ import (
 	"github.com/gorilla/mux"
 
 	api "{{cookiecutter.app_name}}/api"
+	{% if cookiecutter.mongo_uri != "n" or cookiecutter.postgres_uri !="n" -%}
 	utl "{{cookiecutter.app_name}}/utils"
+	{% else -%}
+	{%- endif %}
 	customLogger "{{cookiecutter.app_name}}/log"
 )
 
